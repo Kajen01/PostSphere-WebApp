@@ -13,6 +13,6 @@ It allows users to express themselves and connect with others through an interac
 
 ## Installation
 
-1. Clone the repository:
-   git clone https://github.com/kajen01/PostSphere.git
-   cd PostSphere
+Clone the repository:
+  - git clone https://github.com/kajen01/PostSphere.git
+  - cd PostSphere
