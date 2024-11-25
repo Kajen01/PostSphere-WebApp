@@ -14,5 +14,5 @@ It allows users to express themselves and connect with others through an interac
 ## Installation
 
 Clone the repository:
-  - git clone https://github.com/kajen01/PostSphere.git
+  - git clone https://github.com/Kajen01/PostSphere-WebApp.git
   - cd PostSphere
