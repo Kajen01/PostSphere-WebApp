@@ -15,7 +15,11 @@ import EditPost from './components/EditPost.js';
 import useWindowSize from './hooks/useWindowSize.js';
 
 function App() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState(() => {
+    // Retrieve posts from localStorage
+    const savedPosts = localStorage.getItem('posts')
+    return savedPosts ? JSON.parse(savedPosts) : []
+  });
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [postTitle, setPostTitle] = useState('')
@@ -23,9 +27,14 @@ function App() {
   const [editTitle, setEditTitle] = useState('')
   const [editBody, setEditBody] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  const {width} = useWindowSize()
+  const { width } = useWindowSize()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  // Save posts to localStorage
+  useEffect(() => {
+    localStorage.setItem('posts', JSON.stringify(posts));
+  }, [posts])
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -43,8 +52,8 @@ function App() {
           console.log(`Error: ${error.message}`)
         }
       }
-      finally{
-        setTimeout(() => {setIsLoading(false)}, 2000)
+      finally {
+        setTimeout(() => { setIsLoading(false) }, 2000)
       }
     }
     fetchPosts()
@@ -138,7 +147,7 @@ function App() {
     <div className="App">
       <Header
         title="PostSphere WebApp"
-        width = {width}
+        width={width}
       />
       <Nav
         search={search}
@@ -148,7 +157,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home
           posts={searchResults}
-          isLoading = {isLoading}
+          isLoading={isLoading}
         />} />
         <Route path='post'>
           <Route index element={<NewPost
@@ -164,7 +173,7 @@ function App() {
           />} />
         </Route>
         <Route path='/editpost/:id' element={<EditPost
-          posts = {posts}
+          posts={posts}
           handleEdit={handleEdit}
           editTitle={editTitle}
           setEditTitle={setEditTitle}
