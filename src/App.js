@@ -12,38 +12,7 @@ import {format} from 'date-fns'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: "My First",
-      datetime: "November 20, 2024 11:15:20 PM",
-      body: "Hi, Just now i got completed this 10hrs course. I have learned lot from this tutorial. The man who has innocent face with pure heart."
-    },
-    {
-      id: 2,
-      title: "My second",
-      datetime: "November 22, 2024 12:15:20 PM",
-      body: "As already you said, No one can explain React JS like you."
-    },
-    {
-      id: 3,
-      title: "My Third",
-      datetime: "November 24, 2024 08:15:20 AM",
-      body: "Awesome tutorial. I'm new to react. I feel really effortless when I'm watching this. Thanks a lot."
-    },
-    {
-      id: 4,
-      title: "My Forth",
-      datetime: "November 20, 2024 10:15:20 AM",
-      body: "Awesome Bala. I am 63 years old and am trying to learn the new technologies. In fact your explanation motivates me to watch and learn.. God bless. Please continue your good work."
-    },
-    {
-      id: 5,
-      title: "My Fifth",
-      datetime: "November 25, 2024 01:15:20 PM",
-      body: "I saw dave gray react course but i'm not understand. but same course in tamil language very clear understand. one of the best react course in tamil. thank you bro."
-    }
-  ])
+  const [posts, setPosts] = useState([])
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [postTitle, setPostTitle] = useState('')
@@ -76,12 +45,16 @@ function App() {
     navigate('/')
   }
 
-  const handleDelete = (e) => {
-    e.preventDefault()
-    
-    setPostTitle('')
-    setPostBody('')
+  const handleDelete = (id) => {
+    const newPosts = posts.filter(post => post.id !== id)
+    setPosts(newPosts)
     navigate('/')
+  }
+
+  const handleEdit = (id) => {
+    postTitle = posts[id].title
+    postBody = posts[id].body
+    navigate('/post')
   }
 
   return (
@@ -98,7 +71,7 @@ function App() {
         <Route path='/' element={<Home 
           posts = {searchResults}
         />} />
-        <Route path='newpost'> 
+        <Route path='post'> 
           <Route index element={<NewPost 
             handleSubmit = {handleSubmit}
             postTitle = {postTitle}
@@ -106,9 +79,10 @@ function App() {
             postBody = {postBody}
             setPostBody = {setPostBody}
           />} />
-          <Route path='id' element={<PostPage 
+          <Route path=':id' element={<PostPage 
             posts = {posts}
             handleDelete = {handleDelete}
+            handleEdit={handleEdit}
           />} />
         </Route>
         <Route path='about' element={<About />} />

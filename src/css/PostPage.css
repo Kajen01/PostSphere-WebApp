@@ -1,0 +1,30 @@
+.PostPage {
+    width: 100%;
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.PostPage button {
+    height: 48px;
+    min-width: 60px;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.deleteButton {
+    background-color: red;
+}
+
+.editButton {
+    background-color: #333;
+}
+
+.statusMsg {
+    margin-top: 2rem;
+}

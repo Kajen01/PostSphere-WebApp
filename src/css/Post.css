@@ -4,11 +4,11 @@
     border-bottom: 1px solid lightgray;
 }
 
-.post:first-child {
+.Post:first-child {
     margin-top: 0;
 }
 
-.post:last-child {
+.Post:last-child {
     border-bottom: none;
 }
 
@@ -21,11 +21,11 @@
     margin: 1rem 0;
 }
 
-.Home .post a {
+.Home .Post a {
     text-decoration: none;
 }
 
-.post a,
-.post a:visited {
+.Post a,
+.Post a:visited {
     color: #000;
 }

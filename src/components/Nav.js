@@ -9,6 +9,7 @@ const Nav = ({search, setSearch}) => {
         <label htmlFor="search">Search Posts</label>
         <input 
           autoFocus
+          tabIndex={0}
           type="text" 
           name="search" 
           id="search" 
@@ -20,7 +21,7 @@ const Nav = ({search, setSearch}) => {
       <ul className="navbar">
         {/* Navigation Links */}
         <li><Link  to="/">Home</Link></li>
-        <li><Link to="/newpost">Post</Link></li>
+        <li><Link to="/post">Post</Link></li>
         <li><Link to="/about">About</Link></li>
       </ul>
     </nav>
