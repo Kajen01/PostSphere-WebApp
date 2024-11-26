@@ -7,10 +7,12 @@ import PostPage from './components/PostPage.js';
 import About from './components/About.js';
 import Missing from './components/Missing.js';
 import Footer from './components/Footer.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {format} from 'date-fns'
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [post, setPost] = useState([
+  const [posts, setPosts] = useState([
     {
       id: 1,
       title: "My First",
@@ -44,6 +46,35 @@ function App() {
   ])
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [postTitle, setPostTitle] = useState('')
+  const [postBody, setPostBody] = useState('')
+
+  useEffect(() => {
+    const filteredResults = posts.filter((post) => 
+    ((post.title).toLowerCase()).includes(search.toLowerCase())
+    || ((post.body).toLowerCase()).includes(search.toLowerCase())
+    )
+    setSearchResults(filteredResults.reverse())
+  }, [posts, search])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const id = posts.length ? posts[posts.length-1].id + 1 : 1
+    const datetime = format(new Date(), `MMMM dd, yyyy pp`) 
+    const newPost = {
+      id,
+      title:postTitle,
+      datetime,
+      body:postBody
+    }
+    const allPosts = [...posts, newPost]
+    setPosts(allPosts)
+    setPostTitle('')
+    setPostBody('')
+    // navigate('/')
+  }
+
+
 
   return (
     <div className="App">
@@ -54,12 +85,27 @@ function App() {
         search = {search}
         setSearch = {setSearch}
       />
-      <Home />
-      <NewPost />
+      <Home 
+        posts = {searchResults}
+      />
+      <NewPost 
+        handleSubmit = {handleSubmit}
+        postTitle = {postTitle}
+        setPostTitle = {setPostTitle}
+        postBody = {postBody}
+        setPostBody = {setPostBody}
+      />
       <PostPage />
       <About />
       <Missing />
       <Footer />
+
+{/*       
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/NewPost' element={<NewPost />} />
+      </Routes>
+       */}
     </div>
   );
 }

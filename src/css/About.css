@@ -1,0 +1,12 @@
+.About {
+    width: 100%;
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #fff;
+    padding-left: 2rem;
+}
+
+p {
+    margin: 1rem 0;
+}

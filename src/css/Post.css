@@ -1,0 +1,31 @@
+.Post {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid lightgray;
+}
+
+.post:first-child {
+    margin-top: 0;
+}
+
+.post:last-child {
+    border-bottom: none;
+}
+
+.postDate {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.postBody {
+    margin: 1rem 0;
+}
+
+.Home .post a {
+    text-decoration: none;
+}
+
+.post a,
+.post a:visited {
+    color: #000;
+}
