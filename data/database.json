@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "My First",
+      "datetime": "November 20, 2024 11:15:20 PM",
+      "body": "Hi, Just now I got completed this 10hrs course. I have learned a lot from this tutorial. The man who has an innocent face with a pure heart."
+    },
+    {
+      "id": "2",
+      "title": "My Second",
+      "datetime": "November 22, 2024 12:15:20 PM",
+      "body": "As already you said, no one can explain React JS like you."
+    },
+    {
+      "id": "3",
+      "title": "My Third",
+      "datetime": "November 24, 2024 08:15:20 AM",
+      "body": "Awesome tutorial. I'm new to React. I feel really effortless when I'm watching this. Thanks a lot."
+    },
+    {
+      "id": "4",
+      "title": "My Fourth",
+      "datetime": "November 20, 2024 10:15:20 AM",
+      "body": "Awesome Bala. I am 63 years old and am trying to learn new technologies. In fact, your explanation motivates me to watch and learn. God bless. Please continue your good work."
+    },
+    {
+      "id": "5",
+      "title": "My Fifth",
+      "datetime": "November 25, 2024 01:15:20 PM",
+      "body": "I saw Dave Gray's React course but didn't understand. But the same course in Tamil was very clear to understand. One of the best React courses in Tamil. Thank you, bro."
+    },
+    {
+      "id": "51",
+      "title": "My Fifth",
+      "datetime": "November 26, 2024 7:52:29 PM",
+      "body": "He saw Dave Gray's React course but didn't understand. But the same course in Tamil was very clear to understand. One of the best React courses in Tamil. Thank you, bro."
+    }
+  ]
+}
