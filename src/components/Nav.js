@@ -1,23 +1,26 @@
 import React from 'react'
 import '../css/Nav.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Nav = ({search, setSearch}) => {
+  const location = useLocation()
   return (
     <nav className="Nav">
-      <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor="search">Search Posts</label>
-        <input 
-          autoFocus
-          tabIndex={0}
-          type="text" 
-          name="search" 
-          id="search" 
-          placeholder='Search Posts'
-          value={search}
-          onChange={(e) => (setSearch(e.target.value))}
-        />
-      </form>
+      {location.pathname === '/' && (
+        <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
+          <label htmlFor="search">Search Posts</label>
+          <input 
+            autoFocus
+            tabIndex={0}
+            type="text" 
+            name="search" 
+            id="search" 
+            placeholder='Search Posts'
+            value={search}
+            onChange={(e) => (setSearch(e.target.value))}
+          />
+        </form>
+      )}
       <ul className="navbar">
         {/* Navigation Links */}
         <li><Link  to="/">Home</Link></li>

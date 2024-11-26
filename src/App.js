@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import { format } from 'date-fns'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import api from './api/apiPosts.js'
+import EditPost from './components/EditPost.js';
+import useWindowSize from './hooks/useWindowSize.js';
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -18,6 +20,10 @@ function App() {
   const [searchResults, setSearchResults] = useState([])
   const [postTitle, setPostTitle] = useState('')
   const [postBody, setPostBody] = useState('')
+  const [editTitle, setEditTitle] = useState('')
+  const [editBody, setEditBody] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const {width} = useWindowSize()
 
   const navigate = useNavigate();
 
@@ -37,6 +43,9 @@ function App() {
           console.log(`Error: ${error.message}`)
         }
       }
+      finally{
+        setTimeout(() => {setIsLoading(false)}, 2000)
+      }
     }
     fetchPosts()
   }, [])
@@ -51,10 +60,10 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const id = posts.length ? posts[posts.length - 1].id + 1 : 1
+    const id = posts.length ? Number(posts[posts.length - 1].id) + 1 : 1
     const datetime = format(new Date(), `MMMM dd, yyyy pp`)
     const newPost = {
-      id,
+      id: id.toString(),
       title: postTitle,
       datetime,
       body: postBody
@@ -82,8 +91,8 @@ function App() {
   const handleDelete = async (id) => {
     try {
       await api.delete(`/posts/${id}`)
-      const newPosts = posts.filter(post => post.id !== id)
-      setPosts(newPosts)
+      const postsList = posts.filter(post => post.id !== id)
+      setPosts(postsList)
       navigate('/')
     }
     catch (error) {
@@ -98,12 +107,30 @@ function App() {
     }
   }
 
-  const handleEdit = (id) => {
-    const postToEdit = posts.find(post => post.id === id);
-    if (postToEdit) {
-      setPostTitle(postToEdit.title);
-      setPostBody(postToEdit.body);
-      navigate('/post');
+  const handleEdit = async (id) => {
+    const datetime = format(new Date(), `MMMM dd, yyyy pp`)
+    const updatedPost = {
+      id: id.toString(),
+      title: editTitle,
+      datetime,
+      body: editBody
+    }
+    try {
+      const response = await api.put(`/posts/${id}`, updatedPost)
+      setPosts(posts.map(post => (post.id === id ? { ...response.data } : post)))
+      setEditTitle('')
+      setEditBody('')
+      navigate('/')
+    }
+    catch (error) {
+      if (error.response) {
+        console.log(error.response.data)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+      }
+      else {
+        console.log(`Error: ${error.message}`)
+      }
     }
   }
 
@@ -111,6 +138,7 @@ function App() {
     <div className="App">
       <Header
         title="PostSphere WebApp"
+        width = {width}
       />
       <Nav
         search={search}
@@ -120,6 +148,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home
           posts={searchResults}
+          isLoading = {isLoading}
         />} />
         <Route path='post'>
           <Route index element={<NewPost
@@ -132,9 +161,16 @@ function App() {
           <Route path=':id' element={<PostPage
             posts={posts}
             handleDelete={handleDelete}
-            handleEdit={handleEdit}
           />} />
         </Route>
+        <Route path='/editpost/:id' element={<EditPost
+          posts = {posts}
+          handleEdit={handleEdit}
+          editTitle={editTitle}
+          setEditTitle={setEditTitle}
+          editBody={editBody}
+          setEditBody={setEditBody}
+        />} />
         <Route path='about' element={<About />} />
         <Route path='*' element={<Missing />} />
       </Routes>

@@ -31,10 +31,34 @@
       "body": "I saw Dave Gray's React course but didn't understand. But the same course in Tamil was very clear to understand. One of the best React courses in Tamil. Thank you, bro."
     },
     {
-      "id": "51",
-      "title": "My Fifth",
-      "datetime": "November 26, 2024 7:52:29 PM",
-      "body": "He saw Dave Gray's React course but didn't understand. But the same course in Tamil was very clear to understand. One of the best React courses in Tamil. Thank you, bro."
+      "id": "6",
+      "title": "My Sixth",
+      "datetime": "November 26, 2024 8:10:30 PM",
+      "body": "Hello Bala, This is THE BEST tutorial in any technology that I have gone thru in my 17+ years in IT carrier. Awesome job. While in the process of watching your video and trying the code in parallel, lots of time in the middle of the night I couldn’t refrain watch/practicing, this is only because the way you took this course to the core which reminding me of reading “Ponniyin Selvan” novel , which let you not stop reading it as it keeps curious to know what is next, what is next."
+    },
+    {
+      "id": "7",
+      "title": "My Seventh",
+      "datetime": "November 26, 2024 8:12:45 PM",
+      "body": "It seems you're trying to use an array-like structure ([posts[posts.length - 1].id]) and then access .value to get the id. However, this isn't the correct approach to get the id value as you expect."
+    },
+    {
+      "id": "8",
+      "title": "My Eighth",
+      "datetime": "November 26, 2024 8:13:20 PM",
+      "body": "It seems you're trying to use an array-like structure ([posts[posts.length - 1].id]) and then access .value to get the id. However, this isn't the correct approach to get the id value as you expect."
+    },
+    {
+      "id": "9",
+      "title": "My Ninth",
+      "datetime": "November 26, 2024 8:14:05 PM",
+      "body": "Safely generating the next id: When determining the next id for a new post, we use the toNumber() function to ensure that we are working with valid numbers. The toNumber() function ensures that if there's an issue with the id of the last post, we fallback to 0, and then increment by 1."
+    },
+    {
+      "id": "10",
+      "title": "My Tenth",
+      "datetime": "November 26, 2024 10:15:11 PM",
+      "body": "To ensure that the id is always treated as a number and avoid string concatenation issues, you can create a toNumber() function that will safely convert the id to a number. Here's how you can implement it."
     }
   ]
 }
