@@ -18,9 +18,10 @@ const Nav = ({search, setSearch}) => {
         />
       </form>
       <ul className="navbar">
+        {/* Navigation Links */}
         <li><Link  to="/">Home</Link></li>
-        <li><Link to="/NewPost">Post</Link></li>
-        <li><Link to="/About">About</Link></li>
+        <li><Link to="/newpost">Post</Link></li>
+        <li><Link to="/about">About</Link></li>
       </ul>
     </nav>
   )

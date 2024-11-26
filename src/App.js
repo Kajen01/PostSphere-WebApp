@@ -9,7 +9,7 @@ import Missing from './components/Missing.js';
 import Footer from './components/Footer.js';
 import { useEffect, useState } from 'react';
 import {format} from 'date-fns'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -49,6 +49,8 @@ function App() {
   const [postTitle, setPostTitle] = useState('')
   const [postBody, setPostBody] = useState('')
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const filteredResults = posts.filter((post) => 
     ((post.title).toLowerCase()).includes(search.toLowerCase())
@@ -71,10 +73,16 @@ function App() {
     setPosts(allPosts)
     setPostTitle('')
     setPostBody('')
-    // navigate('/')
+    navigate('/')
   }
 
-
+  const handleDelete = (e) => {
+    e.preventDefault()
+    
+    setPostTitle('')
+    setPostBody('')
+    navigate('/')
+  }
 
   return (
     <div className="App">
@@ -85,27 +93,28 @@ function App() {
         search = {search}
         setSearch = {setSearch}
       />
-      <Home 
-        posts = {searchResults}
-      />
-      <NewPost 
-        handleSubmit = {handleSubmit}
-        postTitle = {postTitle}
-        setPostTitle = {setPostTitle}
-        postBody = {postBody}
-        setPostBody = {setPostBody}
-      />
-      <PostPage />
-      <About />
-      <Missing />
-      <Footer />
-
-{/*       
+      {/* Define Routes */}
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/NewPost' element={<NewPost />} />
+        <Route path='/' element={<Home 
+          posts = {searchResults}
+        />} />
+        <Route path='newpost'> 
+          <Route index element={<NewPost 
+            handleSubmit = {handleSubmit}
+            postTitle = {postTitle}
+            setPostTitle = {setPostTitle}
+            postBody = {postBody}
+            setPostBody = {setPostBody}
+          />} />
+          <Route path='id' element={<PostPage 
+            posts = {posts}
+            handleDelete = {handleDelete}
+          />} />
+        </Route>
+        <Route path='about' element={<About />} />
+        <Route path='*' element={<Missing />} />
       </Routes>
-       */}
+      <Footer />
     </div>
   );
 }

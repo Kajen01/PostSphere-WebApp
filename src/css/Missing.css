@@ -10,3 +10,7 @@
 p {
     margin: 1rem 0;
 }
+
+.linkHome:hover {
+    color: blue;
+}
