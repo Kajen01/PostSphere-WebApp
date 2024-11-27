@@ -48,7 +48,7 @@ function App() {
     const fetchPosts = async () => {
       try {
         const response = await api.get('/posts')
-        setPosts(response.data)
+        setPosts((prevPosts) => [...prevPosts, ...response.data])
       }
       catch (error) {
         if (error.response) {
