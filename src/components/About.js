@@ -9,6 +9,7 @@ const About = () => {
       <h5>I'm Kajenthiran.</h5>
       <p>This is my React project for a post creation, view, edit and deleting web app.
       </p>
+      <p>Enjoy!</p>
     </main>
   )
 }
