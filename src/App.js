@@ -18,7 +18,15 @@ function App() {
   const [posts, setPosts] = useState(() => {
     // Retrieve posts from localStorage
     const savedPosts = localStorage.getItem('posts')
-    return savedPosts ? JSON.parse(savedPosts) : []
+    return savedPosts ? JSON.parse(savedPosts)
+     : [
+      {
+        id: "1",
+        title: "My First",
+        datetime: "November 20, 2024 11:15:20 PM",
+        body: "Hi, Just now I got completed this 10hrs course. I have learned a lot from this tutorial. The man who has an innocent face with a pure heart."
+      }
+     ]
   });
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
